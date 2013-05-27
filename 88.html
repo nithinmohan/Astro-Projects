@@ -1,0 +1,222 @@
+<html>
+<head>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script>
+	function init(arr)
+	{
+		arr[0]="Ashwathi";
+		arr[1]="Bharani";
+		arr[2]="Karthika";
+		arr[3]="Rohini";
+		arr[4]="Makayiram";
+		arr[5]="Thiruvathira";
+		arr[6]="Punartham";
+		arr[7]="Pooyam";
+		arr[8]="Aayilyam";
+		arr[9]="Makam";
+		arr[10]="Pooram";
+		arr[11]="Uthram";
+		arr[12]="Atham";
+		arr[13]="Chithira";
+		arr[14]="Chothi";
+		arr[15]="Vishakham";
+		arr[16]="Anizham";
+		arr[17]="Ketta";
+		arr[18]="Moolam";
+		arr[19]="Pooradam";
+		arr[20]="Uthradam";
+		arr[21]="Thiruvaonam";
+		arr[22]="Avittam";
+		arr[23]="Chathayam";
+		arr[24]="Pooruruttathi";
+		arr[25]="Uthrittathi";
+		arr[26]="Revathi";
+	}
+	function getnum(arr,naal)
+	{
+		for(i=1;i<=27;i++){
+			if(arr[i]==naal)
+				return i;
+		}
+	}
+	function getnaal(arr,i)
+	{
+		return arr[i];
+	}
+	function getresult(arr,naal,num)
+	{
+		if(num==1)
+		{
+			ansnaal=getnaal(arr,(getnum(arr,naal)+21)%27);
+			ansnum=4;
+		}
+		else
+		{
+			ansnaal=getnaal(arr,((getnum(arr,naal)+21)%27+1)%27);
+			ansnum=num-1;
+		}
+		result.naal=ansnaal;
+		result.num=ansnum;
+		return result;
+	}	
+	$(document).ready(function() {
+		var value=0;
+		var arr=new Array();
+		init(arr);
+		for (i=1;i<=27;i++)
+		{
+			val="<option value=\'"+getnaal(arr,i)+"\'>";
+			$("#nakshatra").append(val);
+		}
+		$(".num").click(function(){
+			$(".num").css({"background-color":"orange"});
+			$(this).css({"background-color":"yellow"});
+			value=parseInt($(this).attr("id"));
+		})
+		$("#submit").click(function(){
+			var selectObj = document.getElementById("favcolor");
+			var naal = selectObj.value;
+			if(naal=="")
+				alert("Enter a nakshatra");
+			else if(value==0)
+				alert("Select a padam");
+			else
+			{
+			result=getresult(arr,naal,value);
+			if(result.naal==undefined)
+				alert("Invalid input");
+			else{
+			resulttext="<p><span class=\"highlight\">"+result.naal+"</span> nakshatra in  padam <span class=\"highlight\">"+result.num+"</span> will cause 88th padam</p>";
+			var div = document.getElementById("resultbox");
+			div.innerHTML=resulttext;
+		}
+		}
+		});
+		$("#clear").click(function(){
+			var selectObj = document.getElementById("favcolor");
+			selectObj.value="";
+			value=0;
+			$(".num").css({"background-color":"orange"});
+		});
+
+	});
+	</script>
+</head>
+<style>
+body
+{
+	margin: 0px;
+	padding: 0px;
+}
+#padam
+{
+background-color: #ccc;
+width: 100%;
+height: 70%;
+position: relative;
+top:15%;
+}
+.highlight
+{
+	font-size: 50px !important; 
+	font-style: strong;
+	color: green;
+}
+#query
+{
+	width: 70%;
+	float: left;
+	height: 100%;
+}
+#query *
+{
+margin-left: 10%;
+font-size: 40px;
+}
+#submit
+{
+	margin-top:30px;
+	position: relative;
+	right: 40px;
+	float: right;
+	padding: 3px;
+	width:20%;
+	height: 12%;
+	background-color: red;
+}
+#submit:hover
+{
+	cursor: pointer;
+	background-color: pink;
+}
+#clear
+{
+	float: left;
+	margin-top:30px;
+	position: relative;
+	right: 40px;
+	float: right;
+	padding: 3px;
+	width:20%;
+	height: 12%;
+	background-color: red;
+}
+#clear:hover
+{
+	cursor: pointer;
+	background-color: pink;
+}
+#padamselect
+{
+	margin-left: 30px;
+	margin-top: 3%;
+	margin-bottom: 3%;
+}
+.num
+{
+	padding: 10px;
+	background-color: orange;
+}
+.num:hover
+{
+	cursor: pointer;
+}
+#result
+{
+	float: left;
+	background-color: #999;
+	width: 30%;
+	height: 100%;
+}
+#result *
+{
+font-size: 40px;
+}
+</style>
+<body>
+	<div id="padam">
+		<div id="query">
+	<label for="nakshatra">Nakshatra:</label>
+	<input type="text" list="nakshatra" id="favcolor" name="favcolor" required placeholder="Enter Nakshtra Here">
+	<datalist id="nakshatra">
+	</datalist>
+	<div id="padamselect">
+	<label for="nakshatra">Padam:</label>
+	<span class="num" id="1">1</span>
+	<span class="num" id="2">2</span>
+	<span class="num" id="3">3</span>
+	<span class="num" id="4">4</span>
+</div>
+<div id="clear" >Clear</div>
+	<div id="submit" >Submit</div>
+</div>
+<div id="result">
+	<div id="heading">
+	</div>
+	<div id="resultbox">
+		Click on the submit button for the result;
+	<div>	
+	</div>
+</div>
+</body>
+</html>
