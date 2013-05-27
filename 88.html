@@ -63,18 +63,20 @@
 		var value=0;
 		var arr=new Array();
 		init(arr);
-		for (i=1;i<=27;i++)
+		for (i=0;i<=26;i++)
 		{
 			val="<option value=\'"+getnaal(arr,i)+"\'>";
 			$("#nakshatra").append(val);
 		}
 		$(".num").click(function(){
 			$(".num").css({"background-color":"orange"});
+			$(".num").css({"border":"0px"});
 			$(this).css({"background-color":"yellow"});
+			$(this).css({"border":"2px red solid"});
 			value=parseInt($(this).attr("id"));
 		})
 		$("#submit").click(function(){
-			var selectObj = document.getElementById("favcolor");
+			var selectObj = document.getElementById("nakshatra");
 			var naal = selectObj.value;
 			if(naal=="")
 				alert("Enter a nakshatra");
@@ -82,15 +84,15 @@
 				alert("Select a padam");
 			else
 			{
-			result=getresult(arr,naal,value);
-			if(result.naal==undefined)
-				alert("Invalid input");
-			else{
-			resulttext="<p><span class=\"highlight\">"+result.naal+"</span> nakshatra in  padam <span class=\"highlight\">"+result.num+"</span> will cause 88th padam</p>";
-			var div = document.getElementById("resultbox");
-			div.innerHTML=resulttext;
-		}
-		}
+				result=getresult(arr,naal,value);
+				if(result.naal==undefined)
+					alert("Invalid input");
+				else{
+					resulttext="<p><span class=\"highlight\">"+result.naal+"</span> nakshatra in  padam <span class=\"highlight\">"+result.num+"</span> will cause 88th padam</p>";
+					var div = document.getElementById("resultbox");
+					div.innerHTML=resulttext;
+				}
+			}
 		});
 		$("#clear").click(function(){
 			var selectObj = document.getElementById("favcolor");
@@ -100,7 +102,7 @@
 		});
 
 	});
-	</script>
+</script>
 </head>
 <style>
 body
@@ -110,11 +112,11 @@ body
 }
 #padam
 {
-background-color: #ccc;
-width: 100%;
-height: 70%;
-position: relative;
-top:15%;
+	background-color: #ccc;
+	width: 100%;
+	height: 70%;
+	position: relative;
+	top:15%;
 }
 .highlight
 {
@@ -130,11 +132,12 @@ top:15%;
 }
 #query *
 {
-margin-left: 10%;
-font-size: 40px;
+	margin-left: 10%;
+	font-size: 40px;
 }
 #submit
 {
+	border-radius: 15px;
 	margin-top:30px;
 	position: relative;
 	right: 40px;
@@ -151,6 +154,7 @@ font-size: 40px;
 }
 #clear
 {
+	border-radius: 15px;
 	float: left;
 	margin-top:30px;
 	position: relative;
@@ -175,7 +179,7 @@ font-size: 40px;
 .num
 {
 	padding: 10px;
-	background-color: orange;
+	background-color: #efb442;
 }
 .num:hover
 {
@@ -190,33 +194,34 @@ font-size: 40px;
 }
 #result *
 {
-font-size: 40px;
+	font-size: 40px;
 }
 </style>
 <body>
 	<div id="padam">
 		<div id="query">
-	<label for="nakshatra">Nakshatra:</label>
-	<input type="text" list="nakshatra" id="favcolor" name="favcolor" required placeholder="Enter Nakshtra Here">
-	<datalist id="nakshatra">
-	</datalist>
-	<div id="padamselect">
-	<label for="nakshatra">Padam:</label>
-	<span class="num" id="1">1</span>
-	<span class="num" id="2">2</span>
-	<span class="num" id="3">3</span>
-	<span class="num" id="4">4</span>
-</div>
-<div id="clear" >Clear</div>
-	<div id="submit" >Submit</div>
-</div>
-<div id="result">
-	<div id="heading">
-	</div>
-	<div id="resultbox">
-		Click on the submit button for the result;
-	<div>	
-	</div>
-</div>
-</body>
-</html>
+			<label for="nakshatra">Nakshatra:</label>
+			<input type="text" list="nakshatra" id="nakshatra" required placeholder="Enter Nakshtra Here">
+			<datalist id="nakshatra">
+			</datalist>
+			<div id="padamselect">
+				<label for="nakshatra">Padam:</label>
+				<span class="num" id="1">1</span>
+				<span class="num" id="2">2</span>
+				<span class="num" id="3">3</span>
+				<span class="num" id="4">4</span>
+			</div>
+			<div id="clear" >Clear</div>
+			<div id="submit" >Submit</div>
+		</div>
+		<div id="result">
+			<div id="heading">
+			</div>
+			<div id="resultbox">
+				Click on the submit button for the result;
+				</div>
+			</div>
+				<div>	
+					<a href="bhaga.html">Go to bhaga</a>
+		</body>
+		</html>
